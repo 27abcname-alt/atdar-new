@@ -1,0 +1,54 @@
+{
+  "node": {
+    "0061df187c11322204f111e961ccc454b421e86285": {
+      "workers": {
+        "app/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CTMTpresents%5C%5Catdar-uz%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%5B%220061df187c11322204f111e961ccc454b421e86285%22%2C%22signOut%22%5D%2C%5B%224058f98db9d20f46866df723865bc404eaa2bff483%22%2C%22signup%22%5D%2C%5B%2240ad670198a78140271b3cff2f368c13a0fe65b229%22%2C%22login%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/products/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CTMTpresents%5C%5Catdar-uz%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%5B%220061df187c11322204f111e961ccc454b421e86285%22%2C%22signOut%22%5D%2C%5B%224058f98db9d20f46866df723865bc404eaa2bff483%22%2C%22signup%22%5D%2C%5B%2240ad670198a78140271b3cff2f368c13a0fe65b229%22%2C%22login%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/page": "rsc",
+        "app/products/page": "rsc"
+      }
+    },
+    "4058f98db9d20f46866df723865bc404eaa2bff483": {
+      "workers": {
+        "app/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CTMTpresents%5C%5Catdar-uz%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%5B%220061df187c11322204f111e961ccc454b421e86285%22%2C%22signOut%22%5D%2C%5B%224058f98db9d20f46866df723865bc404eaa2bff483%22%2C%22signup%22%5D%2C%5B%2240ad670198a78140271b3cff2f368c13a0fe65b229%22%2C%22login%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/products/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CTMTpresents%5C%5Catdar-uz%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%5B%220061df187c11322204f111e961ccc454b421e86285%22%2C%22signOut%22%5D%2C%5B%224058f98db9d20f46866df723865bc404eaa2bff483%22%2C%22signup%22%5D%2C%5B%2240ad670198a78140271b3cff2f368c13a0fe65b229%22%2C%22login%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/page": "rsc",
+        "app/products/page": "rsc"
+      }
+    },
+    "40ad670198a78140271b3cff2f368c13a0fe65b229": {
+      "workers": {
+        "app/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CTMTpresents%5C%5Catdar-uz%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%5B%220061df187c11322204f111e961ccc454b421e86285%22%2C%22signOut%22%5D%2C%5B%224058f98db9d20f46866df723865bc404eaa2bff483%22%2C%22signup%22%5D%2C%5B%2240ad670198a78140271b3cff2f368c13a0fe65b229%22%2C%22login%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/products/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CTMTpresents%5C%5Catdar-uz%5C%5Csrc%5C%5Capp%5C%5Cauth%5C%5Cactions.ts%22%2C%5B%5B%220061df187c11322204f111e961ccc454b421e86285%22%2C%22signOut%22%5D%2C%5B%224058f98db9d20f46866df723865bc404eaa2bff483%22%2C%22signup%22%5D%2C%5B%2240ad670198a78140271b3cff2f368c13a0fe65b229%22%2C%22login%22%5D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/page": "rsc",
+        "app/products/page": "rsc"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "Xc8/w3YakDwCmPrFMi1wxe8n8hLFZs+qP3Mqg/PGvCI="
+}
