@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { z } from "zod";
+import { z, ZodIssue } from "zod";
 import { 
   ShoppingBag, 
   Upload, 
@@ -38,6 +38,7 @@ const listingSchema = z.object({
   description: z.string().min(10, "Tavsif kamida 10 ta harfdan iborat bo'lishi kerak"),
   price: z.number().min(1000, "Narxi 1000 so'mdan kam bo'lmasligi kerak"),
   category: z.string().min(1, "Kategoriyani tanlang"),
+  condition: z.string().min(1, "Holatni tanlang"),
   usage_duration: z.string().min(1, "Ishlatilganlik muddatini kiriting"),
   location: z.string().min(1, "Manzilni tanlang"),
   phone_number: z.string().regex(/^\+998\d{9}$/, "Telefon raqami noto'g'ri (+998XXXXXXXXX)"),
@@ -54,6 +55,7 @@ export function AddListingForm() {
   const [region, setRegion] = useState(uzbekistanRegions[0]);
   const [district, setDistrict] = useState(uzbekistanLocations[uzbekistanRegions[0]][0]);
   const [kategoriya, setKategoriya] = useState("qurilish");
+  const [holati, setHolati] = useState("ishlatilgan");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
@@ -103,6 +105,7 @@ export function AddListingForm() {
       description: formData.get("description") as string,
       price: Number(formData.get("price")),
       category: kategoriya,
+      condition: holati,
       usage_duration: formData.get("usage_duration") as string,
       location: `${region}, ${district}`,
       phone_number: formData.get("phone_number") as string,
@@ -151,6 +154,7 @@ export function AddListingForm() {
         image_url: uploadedUrls[0],
         user_id: user.id,
         is_verified: false,
+        is_premium: false,
         views_count: 0
       }).select().single();
 
@@ -159,9 +163,9 @@ export function AddListingForm() {
       // 5. Insert Images to separate table
       if (product) {
         const imagesToInsert = uploadedUrls.map((url, index) => ({
-          mahsulot_id: product.id,
+          product_id: product.id,
           url: url,
-          tartib: index
+          display_order: index
         }));
 
         const { error: imagesError } = await supabase
@@ -169,12 +173,28 @@ export function AddListingForm() {
           .insert(imagesToInsert);
 
         if (imagesError) console.error("Images insert error:", imagesError);
+
+        // 6. Send Telegram Notification
+        try {
+          await fetch("/api/telegram/notify", {
+            method: "POST",
+            body: JSON.stringify({
+              name: validatedData.name,
+              price: validatedData.price,
+              category: validatedData.category,
+              location: validatedData.location,
+              phone: validatedData.phone_number
+            }),
+          });
+        } catch (tgErr) {
+          console.error("Telegram notification error:", tgErr);
+        }
       }
 
       setSuccess(true);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        setError(err.errors[0].message);
+        setError(err.issues.map((e: ZodIssue) => e.message).join(", "));
       } else {
         setError(err instanceof Error ? err.message : "Xatolik yuz berdi");
       }
@@ -247,6 +267,18 @@ export function AddListingForm() {
                     <SelectContent>
                       <SelectItem value="qurilish">Qurilish</SelectItem>
                       <SelectItem value="texnika">Texnika</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-bold text-slate-700">Holati</Label>
+                  <Select value={holati} onValueChange={setHolati}>
+                    <SelectTrigger className="rounded-xl h-12 border-slate-200">
+                      <SelectValue placeholder="Tanlang" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="yangi">Yangi</SelectItem>
+                      <SelectItem value="ishlatilgan">Ishlatilgan</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
