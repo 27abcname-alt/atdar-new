@@ -18,7 +18,7 @@ import { formatCurrency } from "@/lib/utils";
 export default async function HomePage() {
   const supabase = await createClient();
   const { data } = await supabase
-    .from("products")
+    .from("listings")
     .select("id,name,price,image_url,is_verified")
     .eq("is_verified", true)
     .order("id", { ascending: false })

@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, Crown, ShieldCheck } from "lucide-react";
 
 type ImageType = {
   url: string;
-  tartib: number;
+  display_order: number;
 };
 
 type ProductGalleryProps = {

@@ -1,42 +1,42 @@
-import type { Product } from "@/types/database";
+import type { Listing } from "@/types/database";
 
 export type ProductFilters = {
   q?: string;
-  kategoriya?: string;
-  holati?: string;
+  category?: string;
+  condition?: string;
   status?: string;
-  faqatTasdiqlangan?: string;
+  isVerifiedOnly?: string;
 };
 
 export function filterProducts(
-  items: Product[],
+  items: Listing[],
   f: ProductFilters
-): Product[] {
+): Listing[] {
   let out = [...items];
 
   const q = f.q?.trim().toLowerCase();
   if (q) {
     out = out.filter(
       (p) =>
-        p.nomi.toLowerCase().includes(q) ||
-        p.tavsifi.toLowerCase().includes(q)
+        p.name.toLowerCase().includes(q) ||
+        (p.description && p.description.toLowerCase().includes(q))
     );
   }
 
-  if (f.kategoriya && f.kategoriya !== "hammasi") {
-    out = out.filter((p) => p.kategoriya === f.kategoriya);
+  if (f.category && f.category !== "hammasi") {
+    out = out.filter((p) => p.category === f.category);
   }
 
-  if (f.holati && f.holati !== "hammasi") {
-    out = out.filter((p) => p.holati === f.holati);
+  if (f.condition && f.condition !== "hammasi") {
+    out = out.filter((p) => p.condition === f.condition);
   }
 
   if (f.status && f.status !== "hammasi") {
     out = out.filter((p) => p.status === f.status);
   }
 
-  if (f.faqatTasdiqlangan === "1") {
-    out = out.filter((p) => p.atdar_tasdiqlangan === true);
+  if (f.isVerifiedOnly === "1") {
+    out = out.filter((p) => p.is_verified === true);
   }
 
   return out;

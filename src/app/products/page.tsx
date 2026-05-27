@@ -10,12 +10,11 @@ export const metadata: Metadata = {
 export default async function ProductsPage() {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from("products")
-    .select("id,name,price,category,condition,image_url,is_verified,phone_number")
-    .eq("is_verified", true)
+    .from("listings")
+    .select("id,name,price,category,condition,image_url,is_verified,is_premium,phone_number,moderator:moderator_id(full_name)")
     .order("id", { ascending: false });
 
-  const list: DbProduct[] = data ?? [];
+  const list: DbProduct[] = (data as unknown as DbProduct[]) ?? [];
 
   return (
     <div className="bg-slate-50">

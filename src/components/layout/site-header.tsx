@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Hammer, LayoutGrid, PlusCircle, User, LogOut, LayoutDashboard } from "lucide-react";
+import { Hammer, LayoutGrid, PlusCircle, User, LogOut } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";

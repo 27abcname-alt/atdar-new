@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, Eye, PhoneCall } from "lucide-react";
+import { Eye, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function PhoneNumberDisplay({ phoneNumber }: { phoneNumber: string }) {
@@ -35,7 +35,7 @@ export function PhoneNumberDisplay({ phoneNumber }: { phoneNumber: string }) {
       <Eye className="mr-2 h-5 w-5 text-slate-400 group-hover:text-primary" />
       <span>{maskedPhone}</span>
       <span className="ml-2 text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-        Ko'rish
+        Ko&apos;rish
       </span>
     </Button>
   );

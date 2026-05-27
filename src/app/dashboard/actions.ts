@@ -8,7 +8,7 @@ export async function deleteProduct(productId: string, imageUrl: string | null) 
 
   // 1. Delete from database
   const { error: dbError } = await supabase
-    .from('products')
+    .from('listings')
     .delete()
     .eq('id', productId)
 

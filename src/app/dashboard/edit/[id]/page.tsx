@@ -10,7 +10,7 @@ export default async function EditListingPage({ params }: { params: Promise<{ id
   if (!user) redirect("/login");
 
   const { data: product } = await supabase
-    .from("products")
+    .from("listings")
     .select("*")
     .eq("id", id)
     .single();

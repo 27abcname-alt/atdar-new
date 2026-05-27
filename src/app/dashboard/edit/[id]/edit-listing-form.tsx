@@ -4,11 +4,9 @@ import { useState } from "react";
 import { z } from "zod";
 import { 
   ShoppingBag, 
-  Upload, 
   CheckCircle2, 
   AlertCircle,
   Loader2,
-  X,
   ArrowLeft
 } from "lucide-react";
 import Image from "next/image";
@@ -18,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -94,29 +91,32 @@ export function EditListingForm({ initialData }: EditListingFormProps) {
     try {
       // 1. Validation
       const validatedData = listingSchema.parse(rawData);
+      console.log("Validated data:", validatedData);
 
       // 2. Update DB
       const { error: updateError } = await supabase
-        .from("products")
+        .from("listings")
         .update({
           ...validatedData,
           is_verified: false, // Re-verify on edit
+          updated_at: new Date().toISOString(),
         })
         .eq("id", initialData.id);
 
       if (updateError) throw updateError;
 
       setSuccess(true);
+      window.scrollTo(0, 0);
     } catch (err) {
-      if (err instanceof z.ZodError) {
-        setError(err.errors[0].message);
-      } else {
-        setError(err instanceof Error ? err.message : "Xatolik yuz berdi");
+        if (err instanceof z.ZodError) {
+          setError(err.issues[0].message);
+        } else {
+          setError(err instanceof Error ? err.message : "Xatolik yuz berdi");
+        }
+      } finally {
+        setLoading(false);
       }
-    } finally {
-      setLoading(false);
     }
-  }
 
   if (success) {
     return (

@@ -18,10 +18,10 @@ const nextConfig = {
   },
   // Mana shu ikki qismni qo'shing:
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
 };
 

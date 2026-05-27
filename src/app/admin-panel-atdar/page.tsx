@@ -29,7 +29,7 @@ async function verifyProduct(formData: FormData) {
   if (!id) return;
 
   const supabase = await createClient();
-  await supabase.from("products").update({ is_verified: true }).eq("id", id);
+  await supabase.from("listings").update({ is_verified: true }).eq("id", id);
   revalidatePath("/admin-panel-atdar");
   revalidatePath("/products");
   revalidatePath(`/products/${id}`);
@@ -42,7 +42,7 @@ async function unverifyProduct(formData: FormData) {
   if (!id) return;
 
   const supabase = await createClient();
-  await supabase.from("products").update({ is_verified: false }).eq("id", id);
+  await supabase.from("listings").update({ is_verified: false }).eq("id", id);
   revalidatePath("/admin-panel-atdar");
   revalidatePath("/products");
   revalidatePath(`/products/${id}`);
@@ -73,7 +73,7 @@ async function deleteProduct(formData: FormData) {
     }
   }
 
-  await supabase.from("products").delete().eq("id", id);
+  await supabase.from("listings").delete().eq("id", id);
   revalidatePath("/admin-panel-atdar");
   revalidatePath("/products");
 }
@@ -85,7 +85,7 @@ function formatPrice(n: number) {
 export default async function AdminPanelAtdarPage() {
   const supabase = await createClient();
   const { data, error } = await supabase
-    .from("products")
+    .from("listings")
     .select("id,name,price,category,phone_number,image_url,is_verified")
     .order("id", { ascending: false });
 

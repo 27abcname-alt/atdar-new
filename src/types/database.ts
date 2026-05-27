@@ -1,50 +1,62 @@
 /**
- * Ma'lumotlar bazasi sxemasi (PostgreSQL / boshqa DB uchun asos).
- * Jadvallar: Users, Products, Images, Verification_Requests
+ * Ma'lumotlar bazasi sxemasi (PostgreSQL / Supabase).
+ * Jadvallar: Profiles, Listings, Images, Reviews
  */
 
-export type UserRole = "sotuvchi" | "xaridor";
+export type UserRole = "buyer" | "seller" | "moderator";
+export type ListingStatus = "pending" | "approved" | "rejected";
 
-export interface User {
+export interface Profile {
   id: string;
-  ism: string;
-  tel_raqam: string;
-  rol: UserRole;
-  yaratilgan_sana?: string;
+  full_name: string | null;
+  phone_number: string | null;
+  role: UserRole;
+  rating: number;
+  verified_count: number;
+  experience_years: number;
+  successful_reviews_count: number;
+  joined_at: string;
+  updated_at: string;
 }
 
-export type ProductCategory = "qurilish" | "texnika";
-export type ProductCondition = "yangi" | "ishlatilgan";
-export type ProductStatus = "kutilmoqda" | "tasdiqlangan" | "sotilgan";
+export type ProductCategory = "qurilish" | "texnika" | "kvartira";
 
-export interface Product {
+export interface Listing {
   id: string;
-  nomi: string;
-  tavsifi: string;
-  narxi: number;
-  valyuta: "UZS";
-  kategoriya: ProductCategory;
-  holati: ProductCondition;
-  status: ProductStatus;
-  sotuvchi_id: string;
-  atdar_tasdiqlangan?: boolean;
-  yaratilgan_sana?: string;
+  user_id: string;
+  name: string;
+  description: string | null;
+  price: number;
+  category: string | null;
+  condition: string | null;
+  usage_duration: string | null;
+  location: string | null;
+  phone_number: string | null;
+  status: ListingStatus;
+  moderator_id: string | null;
+  rejection_reason: string | null;
+  requirements_met: boolean;
+  image_url: string | null;
+  views_count: number;
+  is_verified: boolean;
+  is_premium: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ProductImage {
   id: string;
-  mahsulot_id: string;
+  listing_id: string;
   url: string;
-  tartib: number;
+  display_order: number;
+  created_at: string;
 }
 
-export type VerificationStatus = "yuborilgan" | "jarayonda" | "yakunlangan" | "rad_etilgan";
-
-export interface VerificationRequest {
+export interface Review {
   id: string;
-  mahsulot_id: string;
-  foydalanuvchi_id: string;
-  holat: VerificationStatus;
-  izoh?: string;
-  yaratilgan_sana?: string;
+  listing_id: string;
+  author_id: string;
+  stars: number;
+  comment: string | null;
+  created_at: string;
 }

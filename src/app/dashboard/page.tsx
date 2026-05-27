@@ -13,7 +13,7 @@ export default async function DashboardPage() {
 
   // Fetch listings
   const { data: listings } = await supabase
-    .from('products')
+    .from('listings')
     .select('*')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
